@@ -9,10 +9,10 @@ class Blog(models.Model):
     blog_title = models.CharField(max_length=150)
     blog_content = models.TextField()
     blog_author = models.ForeignKey(User)
-    blog_date_created = models.CharField(max_length=35)
+    blog_date_created = models.CharField(max_length=60)
     blog_timezone_date_created = models.DateTimeField(default=timezone.now)
     blog_time_since_post_creation = models.CharField(max_length=30, default='')
-    blog_date_modified = models.CharField(max_length=35)
+    blog_date_modified = models.CharField(max_length=60)
     blog_timezone_date_modified = models.DateTimeField(default=timezone.now)
     blog_time_since_post = models.CharField(max_length=30, default='')
 
