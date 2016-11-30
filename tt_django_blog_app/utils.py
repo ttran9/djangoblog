@@ -113,7 +113,10 @@ class TimeUtility:
             time_since_last_post = ''.join(last_post_time)
             time_since_last_post = "%s %s" % (time_since_last_post, 'ago')
 
-        return time_since_last_post
+        if time_since_last_post == '':
+            return None
+        else:
+            return time_since_last_post
 
 
 class EmailUtility:
