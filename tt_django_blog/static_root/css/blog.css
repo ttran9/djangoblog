@@ -1,0 +1,66 @@
+/* for both show posts and single post */
+.blog-post {
+    margin-bottom: 60px;
+}
+.blog-post-title {
+    margin-bottom: 5px;
+    font-size: 40px;
+}
+.blog-post-meta {
+    margin-bottom: 20px;
+    color: #999;
+}
+/* end for both show posts and single post */
+
+
+/* for single posts */
+.extra-options {
+    position: absolute;
+    left: 20px;
+}
+
+.extra-options-two {
+    position: absolute;
+    right: 20px;
+}
+/* end for single posts */
+
+
+/* for show all posts */
+.userName {
+	position: absolute;
+	right: 20px;
+}
+
+.blog-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+.blog-description {
+  font-size: 20px;
+  color: #999;
+}
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+}
+/* end for show all posts */
+
+/* other */
+.current-time-text {
+    font-size: 20px;
+}
+
+.current-time-border {
+    border-style: groove;
+    width: 50%;
+}
+/* end other */
+

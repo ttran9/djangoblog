@@ -1,0 +1,34 @@
+{% extends "main_template.html" %}
+{% load staticfiles %}
+{% block headerContent %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/signin.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css"%}"/>
+{% endblock %}
+{% block title %}Add a Post!{% endblock %}
+{% block content %}
+    <div class = "blog-masthead">
+        <div class = "container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item active" href="{% url "show_posts"%}">View All Posts!</a>
+            </nav>
+        </div>
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <div class = "userName">
+            Hello, {{request.user.username}} <a href = "{% url "process_logout"%}">(logout)</a>
+        </div>
+    {% endif %}
+
+    <div class = "container">
+        <form class="form-signin" method="POST" action = "{% url "add_post" %}" >
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Create Your Post</h2>
+            <label for="blogTitle">Post Title:</label>
+            <input type="text" id="blogTitle" name="blogTitle" class="form-control" maxlength="50" size="50">
+            <label for="blogContent">Blog Content/Text:</label>
+            <textarea class="form-control" rows="5" id="blogContent" name="blogContent"></textarea> <br/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Create Post</button>
+        </form>
+    </div>
+{% endblock %}

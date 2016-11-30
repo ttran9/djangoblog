@@ -1,0 +1,34 @@
+{% extends "main_template.html" %}
+{% load staticfiles %}
+{% block headerContent %}
+    <script type="text/javascript" src="{% static "javascript/form-validation.js"%}"></script>
+{% endblock %}
+{% block title %}Login!{% endblock %}
+{% block content %}
+      <div class = "blog-masthead">
+        <div class = "container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item active" href="{% url "show_posts"%}">View All Posts!</a>
+                <a class="blog-nav-item active" href="{% url "show_registration"%}">Create An Account!</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class="blog-header">
+            <form class="form-signin" method = "POST" action = "{% url "process_login" %}" onsubmit="return login_validation()" >
+                {% csrf_token %}
+                <h2 class="form-signin-heading">Enter Credentials</h2> <hr/>
+                <label for="login_userName">Enter Username:</label>
+                <input type="text" id="login_userName" name="login_userName" class="form-control" maxlength="35" size="35">
+                <label for="login_userPassword">Password:</label>
+                <input class="form-control" id="login_userPassword" name="login_userPassword" type="password">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login!</button>
+            </form>
+            {% if message %}
+                <p class="text-center text-danger">{{message}}</p>
+            {% endif %}
+            <p id = "login_error" class="text-center text-danger"></p>
+        </div>
+    </div>
+{% endblock %}

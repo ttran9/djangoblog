@@ -1,0 +1,76 @@
+{% extends "main_template.html" %}
+{% block title %}
+    {% if post %}
+        {{post.blog_title}}
+    {% else %}
+        Blank Single Post
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class = "blog-masthead">
+        <div class = "container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item active" href="{% url "show_posts"%}">View All Posts!</a>
+                {% if request.user.is_authenticated %}
+                    <a class="blog-nav-item active" href="{% url "show_add_post"%}">Make A Post!</a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <div class = "userName">
+            Hello, {{request.user.username}} <a href = "{% url "process_logout"%}">(logout)</a>
+        </div>
+    {% else %}
+        <div class = "userName">
+            <a href= "{% url "show_login"%}">Login</a>
+            |
+            <a href= "{% url "show_registration"%}">Register</a>
+        </div>
+    {% endif %}
+
+    <div class = "container">
+        {% if time %}
+            <p class="current-time-text"><h2 class="current-time-border">{{time|linebreaksbr}}</h2></p>
+        {% endif %}
+        {% if post %}
+            <div class="blog-header">
+                <div class="row">
+         			<div class="col-sm-8 blog-main">
+                        <div class="blog-post">
+                            <h2 class="blog-post-title">{{post.blog_title}}</h2>
+         					<p class="blog-post-meta">Written by {{post.blog_author.username}} on {{post.blog_date_created}} ({{post.blog_time_since_post_creation}})</p>
+                            {% if post.blog_date_created != post.blog_date_modified %}
+                                <p class="blog-post-meta">Last modified by {{post.blog_author.username}} on {{post.blog_date_modified}} ({{post.blog_time_since_post}})</p>
+                            {% endif %}
+                            <pre><code>{{post.blog_content}}</code></pre>
+                            {% if request.user.username == post.blog_author.username %}
+                                <h2><a class="extra-options" href = "{% url "delete_post"%}?post_id={{post.id}}">Delete This Post</a></h2>
+         						<h2><a class="extra-options-two" href = "{% url "edit_post"%}?post_id={{post.id}}">Edit This Post</a></h2>
+                            {% endif %}
+                        </div>
+                    </div>
+               </div>
+            </div>
+            {% if message %}
+                <div class="blog-header">
+                    <div class="row">
+                        <div class="col-sm-8 blog-main">
+                            <div class="blog-post">
+                                <h2 class="blog-post-title">{{message}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="row">
+                <div class="col-sm-8 blog-main">
+                    <hr/>
+                    <pre><code>Post cannot be displayed</code></pre>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css"%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/blog.css"%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/signin.css" %}"/>
+    {% block headerContent %} {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+.body-background {
+	background-color: #eee;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.blog-masthead {
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+/* Nav links */
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+  color: #fff;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+/*
+ * For Single Post
+ */
+.extra-options {
+  position: absolute;
+  left: 20px;
+}
+
+.extra-options-two {
+  position: absolute;
+  right: 20px;
+}
