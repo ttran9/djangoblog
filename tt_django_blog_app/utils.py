@@ -54,59 +54,17 @@ class TimeUtility:
         last_post_time = []
         if time_difference.years > 0:
             last_post_time.append(str(time_difference.years) + 'y, ')
-            if time_difference.months > 0:
-                last_post_time.append(str(time_difference.months) + 'm, ')
-                if time_difference.weeks > 0:
-                    last_post_time.append(str(time_difference.weeks) + 'w, ')
-                    if time_difference.days > 0:
-                        last_post_time.append(str(time_difference.days) + 'd, ')
-                        if time_difference.hours > 1:
-                            last_post_time.append(str(time_difference.hours) + 'h, ')
-                            if time_difference.minutes > 1:
-                                last_post_time.append(str(time_difference.minutes) + 'm, ')
-                                if time_difference.seconds > 0:
-                                    last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.months > 0:
+        if time_difference.months > 0:
             last_post_time.append(str(time_difference.months) + 'm, ')
-            if time_difference.weeks > 0:
-                last_post_time.append(str(time_difference.weeks) + 'w, ')
-                if time_difference.days > 0:
-                    last_post_time.append(str(time_difference.days) + 'd, ')
-                    if time_difference.hours > 1:
-                        last_post_time.append(str(time_difference.hours) + 'h, ')
-                        if time_difference.minutes > 1:
-                            last_post_time.append(str(time_difference.minutes) + 'm, ')
-                            if time_difference.seconds > 0:
-                                last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.weeks > 0:
+        if time_difference.weeks > 0:
             last_post_time.append(str(time_difference.weeks) + 'w, ')
-            if time_difference.days > 0:
-                last_post_time.append(str(time_difference.days) + 'd, ')
-                if time_difference.hours > 1:
-                    last_post_time.append(str(time_difference.hours) + 'h, ')
-                    if time_difference.minutes > 1:
-                        last_post_time.append(str(time_difference.minutes) + 'm, ')
-                        if time_difference.seconds > 0:
-                            last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.days > 0:
+        if time_difference.days > 0:
             last_post_time.append(str(time_difference.days) + 'd, ')
-            if time_difference.hours > 1:
-                last_post_time.append(str(time_difference.hours) + 'h, ')
-                if time_difference.minutes > 1:
-                    last_post_time.append(str(time_difference.minutes) + 'm, ')
-                    if time_difference.seconds > 0:
-                        last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.hours > 1:
+        if time_difference.hours > 0:
             last_post_time.append(str(time_difference.hours) + 'h, ')
-            if time_difference.minutes > 1:
-                last_post_time.append(str(time_difference.minutes) + 'm, ')
-                if time_difference.seconds > 0:
-                    last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.minutes > 1:
+        if time_difference.minutes > 0:
             last_post_time.append(str(time_difference.minutes) + 'm, ')
-            if time_difference.seconds > 0:
-                last_post_time.append(str(time_difference.seconds) + 's')
-        elif time_difference.seconds > 0:
+        if time_difference.seconds > 0:
             last_post_time.append(str(time_difference.seconds) + 's')
 
         if len(last_post_time) > 0:
