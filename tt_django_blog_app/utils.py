@@ -69,6 +69,8 @@ class TimeUtility:
 
         if len(last_post_time) > 0:
             time_since_last_post = ''.join(last_post_time)
+			if len(last_post_time) == 1:
+                time_since_last_post = time_since_last_post.replace(",", "")
             time_since_last_post = "%s %s" % (time_since_last_post, 'ago')
 
         if time_since_last_post == '':
