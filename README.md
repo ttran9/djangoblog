@@ -12,3 +12,7 @@
 # todo: (this will be updated as I make changes)
 
 - Use ajax to check if a user name is already taken.
+
+
+
+# this project can be seen over at: https://tt-django-blog.herokuapp.com
