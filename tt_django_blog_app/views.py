@@ -6,6 +6,8 @@ from tt_django_blog_app.utils import TimeUtility, PasswordUtility, EmailUtility,
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.utils import timezone
+from django.http import HttpResponse
+import json
 
 
 # Create your views here.
@@ -17,7 +19,7 @@ def show_posts(request, message=None):
         posts.blog_time_since_post = TimeUtility.check_since_posted(posts.blog_timezone_date_modified, current_time)
         posts.blog_time_since_post_creation = TimeUtility.check_since_posted(posts.blog_timezone_date_created,
                                                                              current_time)
-    return render(request, "showPosts.html", {"posts": blog_posts, "time": current_time_formatted})
+    return render(request, "showPosts.html", {"posts": blog_posts, "time": current_time_formatted, "message": message})
 
 
 def show_single_post(request, message=None):
@@ -230,25 +232,6 @@ def process_login(request):
     return show_login(request, error)
 
 
-'''
-def login(request):
-    if request.method == "POST":
-        login_form = LoginForm(request.POST)
-        password_hasher = PasswordHasher()
-        entered_user_name = login_form.cleaned_data.get("userName")
-        entered_password = login_form.cleaned_data.get("userPassword")
-        hashed_password = password_hasher.hash(entered_password)
-        try:
-            user_object = BlogUser.objects.get(username=entered_user_name)
-            try:
-                password_hasher.verify(hashed_password, user_object.user_password)
-            except VerifyMismatchError:
-                return render(request, "login.html", {"error": "incorrect credentials"})
-        except BlogUser.DoesNotExist:
-            return render(request, "login.html", {"error": "incorrect credentials"})
-'''
-
-
 def process_logout(request, message=None):
     logout(request)
     if message is None:
@@ -357,27 +340,20 @@ def change_password(request):
         return show_login(request, message)
 
 
-'''
-def register_user(request):
-    if request.method == "POST":
-        registration_form = RegistrationForm(request.POST)
-        user_name = registration_form.cleaned_data.get("userName")
-        user_password = registration_form.cleaned_data.get("userPassword")
-        password_hasher = PasswordHasher()
-        hashed_user_password = password_hasher.hash(user_password)
-        blog_user = BlogUser()
-        blog_user.user_name = user_name
-        blog_user.user_password = hashed_user_password
-        blog_user.user_enabled = True
-        blog_user.user_role = "ROLE_USER"
-        blog_user.save()
-        return render(request, "login.html", {"error": "User successfully created, now log in!"})
-    else:
-        return render(request, "register.html", {"error": "Not able to create user"})
-'''
-
-"""
-    to do #1: make the register page only put in a user name and email:
-    #2: modify the forms.py for the new register page and a change password page.
-    3: modify the register_user above and make another function for processing the change password page.
-"""
+def check_if_user_name_taken(request):
+    response_dict = {"is_disabled": True}
+    if request.is_ajax() and request.POST.has_key('entered_user_name'):
+        entered_user_name = request.POST['entered_user_name']
+        username_incorrect_format = "userName must be 6 to 35 characters, and must only have lower " \
+                                    "case letters numbers, the two characters, '-' and '_'!"
+        try:
+            User.objects.get(username=entered_user_name)
+            response_dict['server_message'] = "user name is already taken"
+        except User.DoesNotExist:
+            check_username_format = CheckForUserUtility.check_username_format(entered_user_name)
+            if check_username_format is not None:  # user name is properly formatted and not taken.
+                response_dict["is_disabled"] = False
+                response_dict['server_message'] = ""
+            else:  # user name has the incorrect format.
+                response_dict["server_message"] = username_incorrect_format
+    return HttpResponse(json.dumps(response_dict), content_type='application/json')

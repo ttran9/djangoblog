@@ -69,7 +69,7 @@ class TimeUtility:
 
         if len(last_post_time) > 0:
             time_since_last_post = ''.join(last_post_time)
-			if len(last_post_time) == 1:
+            if len(last_post_time) == 1:
                 time_since_last_post = time_since_last_post.replace(",", "")
             time_since_last_post = "%s %s" % (time_since_last_post, 'ago')
 
@@ -184,5 +184,11 @@ class CheckForUserUtility:
             return user_object
         except User.DoesNotExist:
             return None
+
+    @staticmethod
+    def check_username_format(username):
+        username_regex = "[a-z0-9_-]{6,35}$"
+        pattern = re.compile(username_regex)
+        return pattern.match(username)
 
 
